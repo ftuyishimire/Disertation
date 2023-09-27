@@ -1,0 +1,80 @@
+{% extends 'store/layouts/main.html' %}
+
+{% block content %}
+<style>
+  /* Add background color to the body or a container */
+  body {
+    background-color: #f5f5f5; /* Replace with your desired background color */
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .card {
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the width as needed */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 300px; /* Set the height to 300px or your desired value */
+    border-radius: 15px; /* Add rounded corners to the card */
+    overflow: hidden; /* Hide image overflow if necessary */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Add drop shadow */
+    border: 1px solid #ccc; /* Add a border */
+  }
+
+  .card-body {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .category-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 15px; /* Add rounded corners to the image */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Add transitions for transform and opacity */
+    opacity: 0.9; /* Add opacity to the image */
+  }
+
+  /* Add a hover effect on the images */
+  .category-image img:hover {
+    transform: scale(1.1); /* Scale the image by 110% on hover */
+    opacity: 1; /* Restore full opacity on hover */
+  }
+
+  .category-name {
+    text-align: center; /* Center the category name */
+    margin-top: 10px; /* Add some space at the top */
+  }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>collections page</h1>
+            <hr>
+            <div class="card-container"> {# Use a container for cards #}
+                {% for item in category %}
+                <div class="card">
+                    <div class="card-body">
+                        <div class="category-image">
+                            <img src="{{ item.image.url }}" alt="Category image">
+                        </div>    
+                        <div class="category-name">
+                            {{ item.name }}
+                        </div>
+                    </div>    
+                </div>
+                {% endfor %}
+            </div>
+        </div>    
+    </div>   
+</div>
+
+{% endblock content %}
