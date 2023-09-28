@@ -1,0 +1,80 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+
+# Virtual Environment
+venv/
+env/
+*.env
+
+# IDE/Editor specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.user
+*.suo
+*.cache
+*.pyc
+*.log
+*.backup
+[Tt]est[Ff]ile*
+[Bb]in
+[Dd]ebug/
+[Ii]gnore*
+.sass-cache/
+.history/
+.sass-cache/
+.DS_Store
+
+# Database
+db.sqlite3
+
+# Thumbnails
+__thumbs/
+
+# Logs
+log/
+logs/
+*.log
+
+# Media files (uploads)
+media/
+uploads/
+*.jpg
+*.jpeg
+*.png
+*.gif
+
+# Static files (compiled, minified, or generated)
+staticfiles/
+static_cdn/
+assets/
+collected_static/
+node_modules/
+webpack-stats.json
+
+# Environment variables
+.env
+
+# Dependency files
+requirements.txt
+pipfile.lock
+yarn.lock
+
+# Ignore all .env files except .env.example
+!.env.example
+
+# Ignore secret settings
+secret.json
+
+# Ignore local development settings
+local_settings.py
