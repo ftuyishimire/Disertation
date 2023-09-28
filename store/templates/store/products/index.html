@@ -21,7 +21,7 @@
     height: 300px; /* Set the height to 300px or your desired value */
     border-radius: 15px; /* Add rounded corners to the card */
     overflow: hidden; /* Hide image overflow if necessary */
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Add drop shadow */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8); /* Add drop shadow */
     border: 1px solid #ccc; /* Add a border */
   }
 
@@ -80,18 +80,31 @@
   h1 {
     margin-top: 65px; /* Increase the margin-top value */
   }
+  h5 {
+    margin-top: 65px; /* Increase the margin-top value */
+    color: #fff;
+  }
   
 </style>
-
+<div class="navbar navbar-expand-lg" style="background-color: #E5EFEC; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);">
+    <div class="container-fluid">
+      <h5 style="font-size: 16px;"> <!-- Adjust the font-size value as needed -->
+        <a class="color:#14A244" href="{% url 'home' %}">Home</a> |
+        <a class="color:#14A244" href="{% url 'collections' %}">Collections |</a>
+        <a class="color:#14A244" href="{% url 'collectionsview' category.slug %}">{{ category.name }}</a>
+      </h5>
+    </div>
+  </div>
+  <p>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <hr>
-            <h1>{{ category_name.name }}</h1>
+            <h1>{{ category.name }}</h1>
             <div class="card-container"> {# Use a container for cards #}
                 {% for item in products %}
                 <div class="card">
-                  <a href="#">
+                  <a href="{% url "productview" item.category.slug item.slug %}">
                       <div class="card-body">
                           <div class="category-image">
                               <img src="{{ item.product_image.url }}" alt="Product image">
