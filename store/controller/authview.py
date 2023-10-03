@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from django.contrib import messages
 
@@ -16,4 +17,32 @@ def register(request):
 
 
 def loginpage(request):
-    return render(request, "store/auth/login.html")
+
+    if request.user.is_authenticated:
+        messages.warning(request, "You are already logged in")
+        return redirect('/')
+    else:
+        if request.method == 'POST':
+            name = request.POST.get('username')
+            passwd = request.POST.get('password')
+
+            user = authenticate(request, username=name, password=passwd)
+
+            if user is not None:
+                login(request, user)
+                messages.success(request, "Logged in")
+                return redirect("/")
+            else:
+                messages.error(request, "Invalid Username or Password")
+                return redirect('/login')
+
+        return render(request, "store/auth/login.html")
+
+
+def logoutpage(request):
+    if request.user.is_authenticated:
+        logout(request)
+        messages.success(request, "you are signed out")
+        return redirect('/')
+    else:
+        return redirect('/')
