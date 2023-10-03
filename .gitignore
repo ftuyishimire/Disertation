@@ -42,8 +42,7 @@ shophub/settings.py
 # Ignore database configuration file
 shophub/settings.ini
 
-# Database
-db.postgresql
+
 
 # Thumbnails
 __thumbs/
