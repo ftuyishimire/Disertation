@@ -35,6 +35,13 @@ env/
 .sass-cache/
 .DS_Store
 
+
+# Ignore Django settings file
+shophub/settings.py
+
+# Ignore database configuration file
+shophub/settings.ini
+
 # Database
 db.postgresql
 
