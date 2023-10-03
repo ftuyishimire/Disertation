@@ -25,7 +25,7 @@
   .card-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: -spacebetween;
   }
 
   /* Individual card styles */
@@ -157,7 +157,7 @@
                                 {% endif %}
                                 <div class="row mt-2">
                                     <div class="col-md-3">
-                                        <label for="Quantity">Quantity</label>
+                                        <label for="Quantity" style="margin-right:60%;">Quantity</label>
                                         <div class="input-group text-center mb-3" style="width: 130px;">
                                             <button class="input-group-text decrement-btn">-</button>
                                             <input type="text" name="quantity" class="form-control text-center" value="1">
@@ -165,7 +165,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-9">
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center" style="justify-content: space-between; margin-top:23px;">
                                             {% if products.quantity > 0 %}
                                                 <button type="button" class="btn btn-primary me-3">Add to Cart <i class="fa fa-shopping-cart"></i></button>
                                             {% endif %}
