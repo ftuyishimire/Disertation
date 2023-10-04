@@ -1,0 +1,173 @@
+{% extends 'store/layouts/main.html' %}
+
+{% block content %}
+<style>
+  /* Global styles */
+  body {
+    background-color: #f5f5f5;
+  }
+
+  /* Navbar styles */
+  .navbar {
+    background-color: #E5EFEC;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Navbar links */
+  .navbar a {
+    color: #14A244;
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+
+  /* Card container */
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: -spacebetween;
+  }
+
+  /* Individual card styles */
+  .card {
+    flex: 0 0 calc(60% - 20px); /* Adjust card width */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ccc;
+  }
+
+  /* Card body */
+  .card-body {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  /* Category image */
+  .category-image {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Category image styles */
+  .category-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.9;
+  }
+
+  /* Hover effect on images */
+  .category-image img:hover {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  /* Category name */
+  .category-name {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* Product name and prices */
+  .category-name div {
+    font-size: 12px !important; /* Reduced font size for all content on the card */
+  }
+
+  /* Floating elements for prices */
+  .float-start,
+  .float-end {
+    font-size: 10px !important; /* Reduced font size for floating elements */
+    display: inline-block;
+    float: left;
+  }
+
+  .float-end {
+    float: right;
+  }
+
+  /* Additional styles */
+  h1 {
+    margin-top: 8px;
+  }
+
+  h5 {
+    margin-top: 65px;
+    color: #fff;
+  }
+  /* Tag font size */
+  .product-viewtag {
+    font-size: 10px; /* Adjust the font size as needed */
+  }
+</style>
+
+<!-- Navbar -->
+<div class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <h5>
+        <a href="{% url 'home' %}">Home</a> |
+        <a href="{% url 'cart' %}">Cart</a> 
+      </h5>
+    </div>
+</div>
+
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow">
+                    <div class="card-body">
+                       {% if cart%}
+                            {% for item in cart %}
+                            <div class="row product_data">
+                                <div class="col-md-2 my-auto">
+                                    <img src="{{ item.product.product_image.url}}" height="70px" width="70px" alt="Image here">
+                                </div>
+                                <div class="col-md-3 my-auto">
+                                    <h6>{{ item.product.name }}
+                                </div>
+                                <div class="col-md-2 my-auto">
+                                    <h6> FRw {{ item.product.selling_price }}</h6>
+                                </div>
+                                <div class="col-md-3 my-auto">
+                                    <input type="hidden" class="prod_id" value="{{ item.product_id }}">
+                                    {% csrf_token %}
+                                    {% if item.product.quantity >= item.product_qty %}
+                                        <label for="Quantity" style="margin-right:70%;">Quantity</label>
+                                        <div class="input-group text-center mb-3" style="width: 130px;">
+                                            <button class="input-group-text changeQuantity decrement-btn">-</button>
+                                            <input type="text" name="quantity" class="form-control qty-input text-center" value="{{ item.product_qty }}">
+                                            <button class="input-group-text changeQuantity increment-btn">+</button>
+                                        </div>
+                                    {% else %}
+                                         `<h6> Out of stock </h6>
+                                    {% endif %}
+                                    </div>
+                                    <div class="col-md-2 my-auto">
+                                        <button class="btn btn-danger delete-cart-item"><i class="fa fa-trash"></i>Remove</button>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% else %}
+                                    <h4> Your cart is empty</h4>
+                                {% endif %}
+                                </div>
+                          </div>      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

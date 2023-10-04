@@ -62,7 +62,7 @@
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
     <script>
-        alertify.set('notifier','position', 'top-right');
+        alertify.set('notifier','position', 'top-up');
         {% for msg in messages %}
             alertify.success('{{ msg }}');
         {% endfor %}

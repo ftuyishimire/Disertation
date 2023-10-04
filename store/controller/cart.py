@@ -27,3 +27,12 @@ def addtocart(request):
             return JsonResponse({'status': "login to continue"})
 
     return redirect('/')
+
+
+
+def viewcart(request):
+    cart = Cart.objects.filter(user=request.user)
+    context = {
+        'cart': cart
+    }
+    return render(request, 'store/include/cart.html', context)
