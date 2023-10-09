@@ -1,4 +1,4 @@
-from django.http.response import JsonResponse
+from django.http.response import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import redirect, render
 from django.contrib import messages
 
@@ -53,8 +53,10 @@ def updatecart(request):
 def deletecartitem(request):
     if request.method == 'POST':
         prod_id = int(request.POST.get('product_id'))
-        if(Cart.objects.filter(user=request.user, product_id=prod_id)):
-            cartitem = Cart.objects.get(product_id=prod_id, user=request.user)
-            cartitem.delete()
-        return JsonResponse({'status': "product  is deleted 4rm your cart."})
+        cartitems = Cart.objects.filter(user=request.user, product_id=prod_id)
+        if cartitems.exists():
+            cartitems.delete()
+            return JsonResponse({'status': "Product is deleted from your cart."})
+        else:
+            return HttpResponseBadRequest('Cart item not found.')
     return redirect('/')
