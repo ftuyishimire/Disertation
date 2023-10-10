@@ -2,7 +2,10 @@ from django.http.response import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import redirect, render
 from django.contrib import messages
 
+from django.contrib.auth.decorators import login_required
+
 from store.models import Product, Cart
+
 
 def addtocart(request):
     if request.method =='POST':
@@ -22,14 +25,11 @@ def addtocart(request):
                         return JsonResponse({'status': "Only" +str(product_check.quantity) + "quantity Available"})
             else:
                 return JsonResponse({'status': "No such product found"})
-
         else:
             return JsonResponse({'status': "login to continue"})
-
     return redirect('/')
 
-
-
+@login_required(login_url='login')
 def viewcart(request):
     cart = Cart.objects.filter(user=request.user)
     context = {
