@@ -110,10 +110,11 @@
   .product-viewtag {
     font-size: 10px; /* Adjust the font size as needed */
   }
+
 </style>
 
 <!-- Navbar -->
-<div class="navbar navbar-expand-lg">
+<div class="navbar navbar-expand-lg" style="background-color:#8EF00D; margin-top: 20px;">
     <div class="container-fluid">
       <h5>
         <a href="{% url 'home' %}">Home</a> |
@@ -160,7 +161,7 @@
                                 </div>
                                 {% endfor %}
                                 {% else %}
-                                    <h4> Your cart is empty</h4>
+                                    <h6> Your cart is empty</h6>
                                 {% endif %}
                                 </div>
                           </div>      
