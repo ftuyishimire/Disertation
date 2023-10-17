@@ -1,6 +1,7 @@
 import random
 from django.shortcuts import redirect, render
 from django.contrib import messages
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from store.models import Cart, Order, OrderItem, Product, Profile
 from django.contrib.auth.models import User
@@ -94,3 +95,13 @@ def placeorder(request):
 
     return redirect('/')
 
+@login_required(login_url='login')
+def razorpaycheckout(request):
+    cart = Cart.objects.filter(user=request.user)
+    total_price = 0
+    for item in cart:
+        total_price = total_price + item.product.selling_price * item.product_qty
+
+    return JsonResponse({
+        "total_price": total_price
+    })

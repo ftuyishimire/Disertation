@@ -24,6 +24,12 @@
     <!-- Default theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 
+    {% comment %} css for jquery auto complete {% endcomment %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    {% comment %} for livechat {% endcomment %}
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
 <style>
     *{
         font-family: 'Roboto', sans-serif;
@@ -64,15 +70,66 @@
 
     {% endblock content %}
 
+    <a href="https://wa.me/+250789105277?text=I'm%20interested %20to%20shopping%20from your store" target="_blank" class="whatsapp-chat">
+        <img src="{% static "/images/whatsapp.png" %}" alt="whatsapp" width="80px" />
+    </a>
+
     {% comment %} Jquery {% endcomment %}
-    <script src="{% static "/js/jquery-3.7.1.min.js" %}"></script>
+    <script src="{% static '/js/jquery-3.7.1.min.js' %}"></script>
 
     {% comment %} Custom Js {% endcomment %}
-    <script src="{% static "/js/custom.js" %}"></script>
+    <script src="{% static '/js/custom.js' %}"></script>
 
     {% comment %} Bootstrap {% endcomment %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  
+    
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        var availableTags = [
+            "ActionScript",
+            "AppleScript",
+            "Asp",
+            "BASIC",
+            "C",
+            "C++",
+            "Clojure",
+            "COBOL",
+            "ColdFusion",
+            "Erlang",
+            "Fortran",
+            "Groovy",
+            "Haskell",
+            "Java",
+            "JavaScript",
+            "Lisp",
+            "Perl",
+            "PHP",
+            "Python",
+            "Ruby",
+            "Scala",
+            "Scheme"
+        ];
+        {% comment %} searchproducts id from the navbar search bar near placeholder {% endcomment %}
+        $( "#tags" ).autocomplete({
+        source: availableTags
+        });
+    </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/652e6a9ff2439e1631e53b73/1hcul10ks';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+
     {% comment %} Alertfy Js {% endcomment %}
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
@@ -85,5 +142,9 @@
     {% block scripts %}
 
     {% endblock scripts %}
+
+    {% comment %} Razorpay checkout {% endcomment %}
+    <script src="{% static '/js/checkout.js' %}"></script>
+
 </body>
 </html>
