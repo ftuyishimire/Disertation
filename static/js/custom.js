@@ -96,7 +96,7 @@ $(document).ready(function () {
 
         $.ajax({
             method: "POST",
-            url: "delete-cart-item",
+            url: "/delete-cart-item",
             data: {
                 'product_id': product_id,
                 csrfmiddlewaretoken: token
