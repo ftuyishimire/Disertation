@@ -25,8 +25,10 @@ urlpatterns = [
 
     path('checkout', checkout.index, name="checkout"),
     path('place-order', checkout.placeorder, name="placeorder"),
+    path('paypalcheckout', checkout.paypalcheckout, name='paypalcheckout'),
+    
 
-    path('proceed-to-pay', checkout.razorpaycheckout)
 
+   
     
 ]

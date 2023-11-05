@@ -94,14 +94,24 @@ def placeorder(request):
         messages.success(request, "Your order has been placed successfully")
 
     return redirect('/')
+    
+
+
+
+
+
 
 @login_required(login_url='login')
-def razorpaycheckout(request):
+def paypalcheckout(request):
     cart = Cart.objects.filter(user=request.user)
     total_price = 0
     for item in cart:
-        total_price = total_price + item.product.selling_price * item.product_qty
+        total_price += item.product.selling_price * item.product_qty
 
     return JsonResponse({
         "total_price": total_price
     })
+
+
+
+

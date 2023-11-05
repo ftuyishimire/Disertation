@@ -1,6 +1,11 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
+
+import requests
+from django.http import JsonResponse
+
 from .models import Category, Product
+from store.models import Order
 
 # Create your views here.
 
@@ -40,4 +45,6 @@ def productview(request, cate_slug, prod_slug):
 
 
     
+
+
 

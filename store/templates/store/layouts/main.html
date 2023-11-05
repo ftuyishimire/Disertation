@@ -55,10 +55,8 @@
         font-weight:800;
     }
     .active:hover{
-        background-color: #f0f0f0; /* Change background color on hover */
+        background-color: transform; /* Change background color on hover */
         color: #333;
-        border-radius: 15px;
-        opacity:5
     }
     
     
@@ -143,8 +141,8 @@
 
     {% endblock scripts %}
 
-    {% comment %} Razorpay checkout {% endcomment %}
-    <script src="{% static '/js/checkout.js' %}"></script>
+    {% comment %} PayPal checkout {% endcomment %}
+    <script src="{% static '/js/custom.js' %}"></script>
 
 </body>
 </html>

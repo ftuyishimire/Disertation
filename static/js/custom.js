@@ -129,4 +129,37 @@ $(document).ready(function () {
         
 
     });
+
+    $('#paypal-button').click(function (e) {
+        e.preventDefault();
+
+        // Make an AJAX request to the 'paypalcheckout' view to get the total price
+        $.ajax({
+            method: "GET",
+            url: "/paypalcheckout",
+            success: function (response) {
+                // Call the PayPal API to initiate the payment
+                paypal.Buttons({
+                    createOrder: function (data, actions) {
+                        return actions.order.create({
+                            purchase_units: [
+                                {
+                                    amount: {
+                                        value: response.total_price,
+                                    },
+                                },
+                            ],
+                        });
+                    },
+                    onApprove: function (data, actions) {
+                        return actions.order.capture().then(function (details) {
+                            // Payment is successful, you can redirect or handle it as needed
+                            alert('Payment successful! Transaction ID: ' + details.id);
+                        });
+                    },
+                }).render('#paypal-button-container'); // Render the PayPal button
+            },
+        });
+    });
+    
 });
