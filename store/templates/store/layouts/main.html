@@ -36,6 +36,7 @@
     }
     a{
         text-decoration:none;
+        color: #000;
     }
     .product-viewtag{
         background-color: red;
@@ -57,6 +58,15 @@
     .active:hover{
         background-color: transform; /* Change background color on hover */
         color: #333;
+    }
+    footer {
+        background-color: rgba(0, 0, 0, 0.0); /* Adjust the last value (alpha) for transparency */
+        color: white;
+        padding: 1em;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
     }
     
     
@@ -83,34 +93,23 @@
     
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
-        var availableTags = [
-            "ActionScript",
-            "AppleScript",
-            "Asp",
-            "BASIC",
-            "C",
-            "C++",
-            "Clojure",
-            "COBOL",
-            "ColdFusion",
-            "Erlang",
-            "Fortran",
-            "Groovy",
-            "Haskell",
-            "Java",
-            "JavaScript",
-            "Lisp",
-            "Perl",
-            "PHP",
-            "Python",
-            "Ruby",
-            "Scala",
-            "Scheme"
-        ];
+        var availableTags = [];
+
+        $.ajax({
+            method: "GET",
+            url: "/product-list",
+            success: function (response) {
+                startAutocomplete(response);
+            }
+        })
         {% comment %} searchproducts id from the navbar search bar near placeholder {% endcomment %}
-        $( "#tags" ).autocomplete({
-        source: availableTags
-        });
+        function startAutocomplete(availableTags)
+        {
+            $( "#searchproducts" ).autocomplete({
+                source: availableTags
+            });
+        }
+        
     </script>
 
     <!--Start of Tawk.to Script-->
@@ -144,5 +143,11 @@
     {% comment %} PayPal checkout {% endcomment %}
     <script src="{% static '/js/custom.js' %}"></script>
 
+    <footer style="float:right;z-index:100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000">
+        <button class="btn btn-dark text-white ">
+          Chez Bs Market © 2023 || 0789105277
+        </button>
+      </footer>
+  
 </body>
 </html>
