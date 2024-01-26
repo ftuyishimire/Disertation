@@ -93,6 +93,11 @@ def placeorder(request):
         Cart.objects.filter(user=request.user).delete()
         messages.success(request, "Your order has been placed successfully")
 
+        payMode = request.POST.get('payment_mode')
+        if (payMode == "Paid by PayPal"):
+            return JsonResponse({'status': "Your orders has been placed"})
+        else:
+            messages.success(request, "Your order has been placed successfull")
     return redirect('/')
     
 
