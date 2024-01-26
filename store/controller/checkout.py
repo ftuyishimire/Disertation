@@ -2,6 +2,7 @@ import random
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.http import JsonResponse
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from store.models import Cart, Order, OrderItem, Product, Profile
 from django.contrib.auth.models import User
@@ -59,6 +60,8 @@ def placeorder(request):
         neworder.pincode = request.POST.get('pincode')
 
         neworder.payment_mode = request.POST.get('payment_mode')
+        neworder.payment_id = request.POST.get('payment_id')
+
 
         cart = Cart.objects.filter(user=request.user)
         cart_total_price = 0
@@ -118,5 +121,7 @@ def paypalcheckout(request):
     })
 
 
+def orders(request):
+    return HttpResponse("My-orders Page")
 
 
