@@ -84,3 +84,5 @@ secret.json
 
 # Ignore local development settings
 local_settings.py
+
+*.pyc
