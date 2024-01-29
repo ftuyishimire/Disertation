@@ -1,0 +1,83 @@
+{% extends 'store/layouts/main.html' %}
+
+{% block content %}
+
+
+
+    <!-- Navbar -->
+<div class="navbar navbar-expand-lg" style="background-color:#8EF00D; margin-top: 75px;">
+    <div class="container-fluid">
+      <h5>
+        <a href="{% url 'home' %}">Home</a> |
+        <a href="{% url 'myorders' %}">My orders list</a> 
+      </h5>
+    </div>
+</div>
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+            <div class="card-header">
+                <h3 class="mb-0">Order View
+                    <a href="{% url "myorders" %}" class="btn btn-warning float-end color-white"> <i class="fa fa-reply"> </i>Back </a>
+                </h3>
+            </div>
+                <div class="card-bord">
+                    <div class="row">
+                        <div class="col-md-6 p-3">
+                            <h5>Shipping Address</h5>
+                            <hr>
+                            <label class="mt-2">First Name</lable>
+                            <div class="border p-1" style="width: 535px;">{{ order.fname }}</div>
+                            <label class="mt-2" >Last Name</lable>
+                            <div class="border p-1" style="width: 535px;">{{ order.lname }}</div>
+                            <label class="mt-2">Email</lable>
+                            <div class="border p-1" style="width: 535px;">{{ order.email }}</div>
+                            <label class="mt-2">Address</lable>
+                                <div class="border p-1" style="width: 535px;">
+                                    {{ order.city }},
+                                    {{ order.state }},
+                                    {{ order.country }},
+                                </div>
+                            <label class="mt-2">Postal code</lable>
+                            <div class="border p-1" style="width: 535px;">{{ order.pincode }}</div>
+                        </div>
+                        <div class="col-md-6 p-3">
+                            <h5>Order Details</h5>
+                            <hr>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Image</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in orderitems  %}
+                                    <tr>
+                                        <td>{{ item.product.name }}</td>
+                                        <td>{{ item.quantity }}</td>
+                                        <td>{{ item.price }}</td>
+                                        <td>
+                                            
+                                            <img src="{{ item.product.product_image.url}}" height="50px" width="50px" alt="Product Image">
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <h3>Grand Total: <span class="float-end"> {{ order.total_price}}</span></h4>
+                            <h6 class="border p-2">Payment Mode: {{ order.payment_mode}}</h6>
+                            <h6 class="border p-2">Order Status: {{ order.status}}</h6>
+                            <h6 class="border p-2">Tracking Number: {{ order.tracking_no}}</h6>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

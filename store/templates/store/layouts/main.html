@@ -68,7 +68,12 @@
         bottom: 0;
         width: 100%;
     }
-    
+    marquee{
+        position: fixed;
+        bottom: 0;
+        color:blue;
+        font-family: cursive;
+    }
     
 </style>
 </head>
@@ -142,7 +147,7 @@
 
     {% comment %} PayPal checkout {% endcomment %}
     <script src="{% static '/js/custom.js' %}"></script>
-
+    <marquee style="overflow: hidden; white-space: nowrap; width: 100%; animation: marquee 10s linear infinite;"><span style="color: red; margin-right: 5px;">&#x2764;</span> we value the health and security of our customer</marquee>
     <footer style="float:right;z-index:100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000">
         <button class="btn btn-dark text-white ">
           Chez Bs Market © 2023 || 0789105277

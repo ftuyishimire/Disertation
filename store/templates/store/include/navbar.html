@@ -27,7 +27,7 @@ h4{
           <form action="{% url "searchproduct" %}" method="POST">
             {% csrf_token %}
             <div class="input-group">
-              <input type="search" required class="form-control" name="productsearch" id="searchproducts" placeholder="Search products by name">
+              <input style="background-color:#00FFFF;" type="search" required class="form-control" name="productsearch" id="searchproducts" placeholder="Search products by name">
               <button type="submit" class="input-group-text"> <i class="fa fa-search"></i></button>
             </div>
           </form>
@@ -57,7 +57,7 @@ h4{
                 {{ request.user }}
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="{% url "myorders" %}">My orders</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{% url "logout" %}">Logout</a></li>
