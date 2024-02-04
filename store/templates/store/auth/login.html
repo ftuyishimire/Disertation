@@ -7,12 +7,19 @@
     .container{
         padding-top:10%;
     }
+    .auth{
+        margin-top:10px;
+        text-align: center;
+    }
 </style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="">
                 <div class="card mt-3 shadow">
+                    <div class="auth">
+                    <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
+                    </div>
                     <div class="card-body">
                         <form action="" method="POST">
                             {% csrf_token %}
