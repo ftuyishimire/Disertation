@@ -1,6 +1,7 @@
+
 {% extends 'store/layouts/main.html' %}
 
-
+{% load static %}
 
 {% block content %}
 <style>
@@ -11,15 +12,21 @@
         margin-top:10px;
         text-align: center;
     }
+    p{
+        font-family: serif;
+        font-weight: 700;
+    }
 </style>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-6" style="background-color: rgb(255,255,255);">
+            <div class="auth">
+                <p>login with social media</p>
+                <a href="{% url 'social:begin' 'google-oauth2' %}"><img src="{% static 'images/7123025_logo_google_g_icon.png' %}" alt="fablo" class="navbar-logo"></a>
+                {% comment %} <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> {% endcomment %}
+                </div>
             <div class="">
                 <div class="card mt-3 shadow">
-                    <div class="auth">
-                    <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
-                    </div>
                     <div class="card-body">
                         <form action="" method="POST">
                             {% csrf_token %}
@@ -35,6 +42,7 @@
                                 <label for=""> Password : </label>
                                 <input type="password" class="form-control" name="password" placeholder="Enter Password">
                             </div>
+                            
                             <button type="submit" class="btn float-end shadow btn-success px-4 mt-2">Login</button>
                         </form>
                     </div>

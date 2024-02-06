@@ -33,17 +33,18 @@ def collectionsview(request, slug):
         return redirect('collections')
 
 def productview(request, cate_slug, prod_slug):
-    if(Category.objects.filter(slug=cate_slug, status=0)):
-        if(Product.objects.filter(slug=prod_slug, status=0)):
-            products = Product.objects.filter(slug=prod_slug, status=0).first
+    if Category.objects.filter(slug=cate_slug, status=0):
+        if Product.objects.filter(slug=prod_slug, status=0):
+            products = Product.objects.filter(slug=prod_slug, status=0).first()
             context = {'products': products}
+            return render(request, 'store/products/view.html', context)
         else:
             messages.error(request, "No such product found")
             return redirect('collections')
     else:
         messages.error(request, "No such category found")
         return redirect('collections')
-    return render(request, 'store/products/view.html', context)
+
 
 
 def productlistAjax(request):
@@ -55,7 +56,7 @@ def productlistAjax(request):
 def searchproduct(request):
     if request.method == "POST":
         searchedterm = request.POST.get('productsearch')
-        if searchedterm == "":
+        if not searchedterm:
             return redirect(request.META.get('HTTP_REFERER'))
         else:
             product = Product.objects.filter(name__contains=searchedterm).first()
@@ -63,10 +64,11 @@ def searchproduct(request):
             if product:
                 return redirect('collections/'+product.category.slug+'/'+product.slug)
             else:
-                messages.info(request, "No product matched your  search")
+                messages.info(request, "No product matched your search")
                 return redirect(request.META.get('HTTP_REFERER'))
 
     return redirect(request.META.get('HTTP_REFERER'))
+
 
     
 

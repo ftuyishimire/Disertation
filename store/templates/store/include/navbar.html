@@ -1,3 +1,4 @@
+{% load static %}
 <style>
   .navbar-logo {
     max-width: 100px; /* Adjust the width as needed */
@@ -15,7 +16,8 @@ h4{
 <nav class="navbar navbar-expand-lg bg-primary fixed-top"> <!-- Change bg-body-tertiary to bg-primary -->
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="static/images/bs.png" alt="fablo" class="navbar-logo"> 
+      <img src="{% static 'images/bs.png' %}" alt="fablo" class="navbar-logo">
+
       Chez Bs Market<br/>
         <h4>shop with us</h4>
     </a>
@@ -50,6 +52,9 @@ h4{
           </li>
           <li class="nav-item">
             <a class="nav-link {% if request.resolver_match.url_name == 'wishlist' %}active{% endif %}" aria-current="page" href="{% url "wishlist" %}">Wishlist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'wishlist' %}active{% endif %}" aria-current="page" href="{% url "wishlist" %}">Blog</a>
           </li>
           {% if request.user.is_authenticated %}
             <li class="nav-item dropdown">
