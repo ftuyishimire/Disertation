@@ -60,7 +60,7 @@
         color: #333;
     }
     footer {
-        background-color: rgba(0, 0, 0, 0.0); /* Adjust the last value (alpha) for transparency */
+        {% comment %} background-color: rgba(0, 0, 0, 0.9); /* Adjust the last value (alpha) for transparency */ {% endcomment %}
         color: white;
         padding: 1em;
         text-align: center;
@@ -147,10 +147,10 @@
 
     {% comment %} PayPal checkout {% endcomment %}
     <script src="{% static '/js/custom.js' %}"></script>
-    <marquee style="overflow: hidden; white-space: nowrap; width: 100%; animation: marquee 10s linear infinite;"><span style="color: red; margin-right: 5px;">&#x2764;</span> we value the health and security of our customer</marquee>
+    {% comment %} <marquee style="overflow: hidden; white-space: nowrap; width: 100%; animation: marquee 10s linear infinite;"><span style="color: red; margin-right: 5px;">&#x2764;</span> we value the health and security of our customer</marquee> {% endcomment %}
     <footer style="float:right;z-index:100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000">
         <button class="btn btn-dark text-white ">
-          Chez Bs Market © 2023 || 0789105277
+          Chez Bs Market © 2023 || Designed by fablo
         </button>
       </footer>
   
