@@ -77,8 +77,8 @@ class Order(models.Model):
     payment_id = models.CharField(max_length=250, null=True)
     orderstatuses = (
         ('Pending', 'Pending'),
-        ('Out 4r shipping', 'Out 4r shipping'),
-        ('Completed', 'completed'),
+        ('Out 4r shipping', 'Delivered'),
+        ('Completed', 'Completed'),
     )
     status = models.CharField(max_length=150, choices=orderstatuses, default='Pending')
     message = models.TextField(null=True)
